@@ -7,8 +7,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
 	},
 	{
 		title: 'Dashboard',
-		icon: 'nb-home',
+		icon: 'home-outline',
 		link: '/pages/dashboard',
+	},
+	{
+		title: 'Publicações',
+		icon: 'home-outline',
+		link: '/pages/posts',
 	},
 	{
 		title: 'TESOURARIA',
@@ -16,11 +21,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
 	},
 	{
 		title: 'Fluxo de caixa',
-		icon: 'nb-bar-chart',
+		icon: 'home-outline',
 	},
 	{
 		title: 'Controle de inventário',
-		icon: 'nb-checkmark',
+		icon: 'home-outline',
 	},
 	{
 		title: 'ADMINISTRATIVO',
@@ -28,15 +33,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
 	},
 	{
 		title: 'Controle de ATAs',
-		icon: 'nb-compose',
+		icon: 'home-outline',
 	},
 	{
 		title: 'Controle de acessos',
-		icon: 'nb-locked',
+		icon: 'home-outline',
 	},
 	{
 		title: 'Controle de pessoas',
-		icon: 'nb-person',
+		icon: 'home-outline',
 	},
 	{
 		title: 'JURÍDICO',
@@ -44,7 +49,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
 	},
 	{
 		title: 'Processos',
-		icon: 'nb-list',
+		icon: 'home-outline',
 	},
 	{
 		title: 'SISTEMA',
@@ -52,7 +57,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
 	},
 	{
 		title: 'Autenticação',
-		icon: 'nb-locked',
+		icon: 'home-outline',
 		children: [
 			{
 				title: 'Entrar',
@@ -74,7 +79,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
 	},
 	{
 		title: 'Variados',
-		icon: 'nb-shuffle',
+		icon: 'home-outline',
 		children: [
 			{
 				title: '404',
