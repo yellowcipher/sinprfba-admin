@@ -13,7 +13,6 @@ interface User {
 	email: string;
 	photoURL?: string;
 	displayName?: string;
-	favoriteColor?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -33,15 +32,33 @@ export class AuthService {
 		);
 	}
 
+	async register(email: string, password: string) {
+		const credential = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+		this.updateUserData(credential.user);
+	}
+
+	signInWithEmail(email: string, password: string) {
+		return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+	}
+
 	googleLogin() {
 		const provider = new auth.GoogleAuthProvider();
 		return this.oAuthLogin(provider);
 	}
 
-	private oAuthLogin(provider) {
-		return this.afAuth.auth.signInWithPopup(provider).then((credential) => {
-			this.updateUserData(credential.user);
-		});
+	facebookLogin() {
+		const provider = new auth.FacebookAuthProvider();
+		return this.oAuthLogin(provider);
+	}
+
+	twitterLogin() {
+		const provider = new auth.TwitterAuthProvider();
+		return this.oAuthLogin(provider);
+	}
+
+	private async oAuthLogin(provider) {
+		const credential = await this.afAuth.auth.signInWithPopup(provider);
+		this.updateUserData(credential.user);
 	}
 
 	private updateUserData(user) {
@@ -61,7 +78,19 @@ export class AuthService {
 
 	signOut() {
 		this.afAuth.auth.signOut().then(() => {
-			this.router.navigate([ '/' ]);
+			this.router.navigate([ '/auth/login' ]);
 		});
 	}
+
+	requestPass(email) {
+		return this.afAuth.auth.sendPasswordResetEmail(email);
+	}
+
+	confirmPasswordReset(code, newPassword) {
+		return this.afAuth.auth.confirmPasswordReset(code, newPassword);
+	}
+
+	/*verifyPasswordResetCode(code){
+    return this.afAuth.auth.verifyPasswordResetCode(code);
+  }*/
 }
