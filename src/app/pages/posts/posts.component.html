@@ -2,8 +2,22 @@
   posts works!
 </p>
 
+<button (click)="createPost(titleInput.value)"> create </button>
+<input type="text" #titleInput>
+
 <ul>
-  <li class="text" *ngFor="let item of items | async">
-    {{item.name}}
+  <li class="text" *ngFor="let item of posts">
+    {{item.title}}
   </li>
 </ul>
+<button (click)="previousPage()" [disabled]="!prevKeys?.length"> Previous </button>
+<button (click)="nextPage()" [disabled]="!nextKey"> Next </button> <br>
+
+Search:
+<input type="text" (input)="titleQuery$.next($event.target.value)" placeholder="Search here">
+<ul>
+  <li class="text" *ngFor="let item of searchedPosts">
+    {{item.title}}
+  </li>
+</ul>
+
