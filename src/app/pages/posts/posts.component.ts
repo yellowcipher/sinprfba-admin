@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Post, PostsService } from './../../services/posts.service';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
 	selector: 'ngx-posts',
@@ -30,13 +32,28 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  public async createPost(title: string) {
-    const post: Post = {
-      'title': title,
-      createdAt: 0,
-    };
-    const res = await this.postsService.createPost(post);
+
+
+  public async createPost(formData) {
+
+    if(formData.titleInput == '' || formData.resumeInput == '' || formData.sourceInput == '' || formData.textInput == ''){
+      alert('Oh no');
+    } else {
+      const post: Post = {
+        'title': formData.titleInput,
+        createdAt: 0,
+        'resumo': formData.resumeInput,
+        'fonte': formData.sourceInput,
+        'txPublicacao': formData.textInput,
+        'imgPrincipal': formData.imageInput,
+        'slides': formData.slidesInput,
+  
+      };
+      const res = await this.postsService.createPost(post);
+    }
+    
   }
+
 
   previousPage() {
     this.getPosts(this.prevKeys.pop());

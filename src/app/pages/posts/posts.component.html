@@ -1,9 +1,25 @@
 <p>
-  posts works!
+  Notícia
 </p>
+<form #post="ngForm" (ngSubmit)="createPost(post.value)">
+  <p>Título:</p>
+  <input type="text" name="titleInput" ngModel>
+  <p>Resumo:</p>
+  <textarea type="text" name="resumeInput" ngModel></textarea>
+  <p>Fonte:</p>
+  <input type="text" name="sourceInput" ngModel>
+  <p>Texto:</p>
+  <textarea type="text" name="textInput" ngModel></textarea>
+  <p>Imagem:</p>
+  <input type="file" name="imageInput" ngModel>
+  <p>Slides:</p>
+  <input type="file" multiple name="slidesInput" ngModel>
+  <p>Arquivos:</p>
+  <input type="file" multiple name="filesInput" ngModel>
+  <p></p>
+  <input type='submit' value='Postar notícia'>
+</form>
 
-<button (click)="createPost(titleInput.value)"> create </button>
-<input type="text" #titleInput>
 
 <ul>
   <li class="text" *ngFor="let item of posts">
@@ -20,4 +36,3 @@ Search:
     {{item.title}}
   </li>
 </ul>
-

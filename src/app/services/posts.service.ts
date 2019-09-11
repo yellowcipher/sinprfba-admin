@@ -81,12 +81,12 @@ export interface Post {
   // id: string;
   title: string;
   createdAt: number;
-  // resumo: string;
-  // fonte: string;
-  // txPublicacao: string;
-  // imgPrincipal?: string;
-  // slides?: [string];
-  // arquivos?: [string];
+  resumo: string;
+  fonte: string;
+  txPublicacao: string;
+  imgPrincipal?: string;
+  slides?: [string];
+  arquivos?: [string];
   // dhCad: string;
   // userCad: string;
   // dhUpd: string;
