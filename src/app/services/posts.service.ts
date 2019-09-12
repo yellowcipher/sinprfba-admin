@@ -89,7 +89,7 @@ export interface Post {
   arquivos?: [string];
   // dhCad: string;
   // userCad: string;
-  // dhUpd: string;
+  dhUpd: string;
   // userUpd: string;
   // dhPublicacao: string;
   // dhVigência?: string;

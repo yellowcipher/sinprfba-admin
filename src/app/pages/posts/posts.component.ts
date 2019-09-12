@@ -36,21 +36,19 @@ export class PostsComponent implements OnInit {
 
   public async createPost(formData) {
 
-    if(formData.titleInput == '' || formData.resumeInput == '' || formData.sourceInput == '' || formData.textInput == ''){
-      alert('Oh no');
-    } else {
       const post: Post = {
         'title': formData.titleInput,
-        createdAt: 0,
+        'createdAt': 0,
         'resumo': formData.resumeInput,
         'fonte': formData.sourceInput,
         'txPublicacao': formData.textInput,
         'imgPrincipal': formData.imageInput,
         'slides': formData.slidesInput,
+        'dhUpd': Date(),
   
       };
       const res = await this.postsService.createPost(post);
-    }
+    
     
   }
 

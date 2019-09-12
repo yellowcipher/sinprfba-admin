@@ -2,22 +2,45 @@
   Notícia
 </p>
 <form #post="ngForm" (ngSubmit)="createPost(post.value)">
-  <p>Título:</p>
-  <input type="text" name="titleInput" ngModel>
-  <p>Resumo:</p>
-  <textarea type="text" name="resumeInput" ngModel></textarea>
-  <p>Fonte:</p>
-  <input type="text" name="sourceInput" ngModel>
-  <p>Texto:</p>
-  <textarea type="text" name="textInput" ngModel></textarea>
-  <p>Imagem:</p>
-  <input type="file" name="imageInput" ngModel>
-  <p>Slides:</p>
-  <input type="file" multiple name="slidesInput" ngModel>
-  <p>Arquivos:</p>
-  <input type="file" multiple name="filesInput" ngModel>
-  <p></p>
-  <input type='submit' value='Postar notícia'>
+  <div class="form-group">
+      <label for="titleInput">Título:</label>
+      <input type="text" required ngModel name="titleInput" #titleInput="ngModel" [class.is-invalid]="titleInput.touched && titleInput.invalid" class="form-control">
+      <p *ngIf="titleInput.touched && !titleInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
+
+      <label for="resumeInput">Resumo:</label>
+      <textarea type="text" required ngModel name="resumeInput" #resumeInput="ngModel" [class.is-invalid]="resumeInput.touched && resumeInput.invalid" class="form-control"></textarea>
+      <p *ngIf="resumeInput.touched && !resumeInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
+
+      <label for="sourceInput">Fonte:</label>
+      <textarea type="text" required ngModel name="sourceInput" #sourceInput="ngModel" [class.is-invalid]="sourceInput.touched && sourceInput.invalid" class="form-control"></textarea>
+      <p *ngIf="sourceInput.touched && !sourceInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
+
+      <label for="textInput">Texto:</label>
+      <textarea type="text" required ngModel name="textInput" #textInput="ngModel" [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></textarea>
+      <p *ngIf="textInput.touched && !textInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
+
+      
+      <label>Imagem:</label>
+      <div class="custom-file">
+          <input type="file" class="custom-file-input" name="imageInput" ngModel>
+          <label class="custom-file-label" for="imageInput">Choose file</label>
+        </div>
+
+      <label>Slides:</label>
+      <div class="custom-file">
+          <input type="file" multiple class="custom-file-input" name="slidesInput" ngModel>
+          <label class="custom-file-label" for="slidesInput">Choose file</label>
+        </div>
+
+        <label>Arquivos:</label>
+        <div class="custom-file">
+            <input type="file" multiple class="custom-file-input" name="filesInput" ngModel>
+            <label class="custom-file-label" for="filesInput">Choose file</label>
+          </div>
+
+          <p></p>
+        <button class='btn btn-primary' type='submit' [disabled]="post.invalid">Postar notícia</button>
+  </div>
 </form>
 
 
