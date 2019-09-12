@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostsComponent } from './posts.component';
@@ -11,6 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [ PostsComponent ],
-	imports: [ CommonModule, PostsRoutingModule, FormsModule, ReactiveFormsModule],
+	imports: [ CommonModule, PostsRoutingModule, FormsModule, ReactiveFormsModule, RichTextEditorAllModule],
 })
 export class PostsModule {}

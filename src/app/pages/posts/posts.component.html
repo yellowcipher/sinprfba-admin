@@ -16,7 +16,8 @@
       <p *ngIf="sourceInput.touched && !sourceInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
 
       <label for="textInput">Texto:</label>
-      <textarea type="text" required ngModel name="textInput" #textInput="ngModel" [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></textarea>
+      <!-- <textarea type="text" required ngModel name="textInput" #textInput="ngModel" [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></textarea> -->
+      <ejs-richtexteditor type="text" required ngModel name="textInput" #textInput="ngModel" [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></ejs-richtexteditor>
       <p *ngIf="textInput.touched && !textInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
 
       
