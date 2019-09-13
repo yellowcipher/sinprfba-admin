@@ -45,11 +45,8 @@ export class PostsComponent implements OnInit {
         'imgPrincipal': formData.imageInput,
         'slides': formData.slidesInput,
         'dhUpd': Date(),
-  
       };
-      const res = await this.postsService.createPost(post);
-    
-    
+      await this.postsService.createPost(post);
   }
 
 
