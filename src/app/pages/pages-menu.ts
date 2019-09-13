@@ -21,8 +21,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
 			{
 				title: 'Carrousel',
 				link: '/pages/posts/carrousel',
-			}
-			,
+			},
+			{
+				title: 'Diretorias',
+				link: '/pages/posts/diretorias',
+			},
 		],
 	},
 	{

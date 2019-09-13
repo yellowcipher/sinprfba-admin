@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PostsComponent } from './posts.component';
 import { NewsComponent } from './news/news.component';
 import { CarrouselComponent } from './carrousel/carrousel.component';
+import { DiretoriasComponent } from './diretorias/diretorias.component';
 
 const routes: Routes = [
 	{
@@ -16,6 +17,10 @@ const routes: Routes = [
 			{
 				path: 'carrousel',
 				component: CarrouselComponent,
+			},
+			{
+				path: 'diretorias',
+				component: DiretoriasComponent,
 			},
 		],
 	},

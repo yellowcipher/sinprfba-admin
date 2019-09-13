@@ -1,0 +1,27 @@
+<p>
+  Nova diretoria
+</p>
+<form #post="ngForm" (ngSubmit)="createPost(post.value)">
+  <div class="form-group">
+    <label for="titleInput">Nome:</label>
+    <input type="text" required ngModel name="titleInput" #titleInput="ngModel"
+      [class.is-invalid]="titleInput.touched && titleInput.invalid" class="form-control">
+    <p *ngIf="titleInput.touched && !titleInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
+
+
+    <label for="textInput">Descrição:</label>
+    <ejs-richtexteditor type="text" required ngModel name="textInput" #textInput="ngModel"
+      [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></ejs-richtexteditor>
+    <p *ngIf="textInput.touched && !textInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
+
+
+    <label>Foto:</label>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" name="imageInput" ngModel>
+      <label class="custom-file-label" for="imageInput">Choose file</label>
+    </div>
+
+    <p></p>
+    <button class='btn btn-primary' type='submit' [disabled]="post.invalid">Postar notícia</button>
+  </div>
+</form>
