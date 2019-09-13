@@ -11,9 +11,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
 		link: '/pages/dashboard',
 	},
 	{
-		title: 'Publicações',
+		title: 'Publicar',
 		icon: 'home-outline',
-		link: '/pages/posts',
+		children: [
+			{
+				title: 'Notícia',
+				link: '/pages/posts/news',
+			},
+			{
+				title: 'Carrousel',
+				link: '/pages/posts/carrousel',
+			}
+			,
+		],
 	},
 	{
 		title: 'TESOURARIA',

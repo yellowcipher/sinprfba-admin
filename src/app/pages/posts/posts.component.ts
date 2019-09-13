@@ -6,7 +6,9 @@ import { Post, PostsService } from './../../services/posts.service';
 
 @Component({
 	selector: 'ngx-posts',
-	templateUrl: './posts.component.html',
+	template: `
+    <router-outlet></router-outlet>
+  `,
 	styleUrls: [ './posts.component.scss' ],
 })
 export class PostsComponent implements OnInit {

@@ -5,7 +5,6 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import { PostsComponent } from './posts/posts.component';
 import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
@@ -65,7 +64,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'posts',
-				component: PostsComponent,
+				loadChildren: () => import('./posts/posts.module').then((m) => m.PostsModule),
 			},
 			{
 				path: '',
