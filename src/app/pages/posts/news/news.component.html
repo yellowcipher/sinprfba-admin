@@ -38,13 +38,23 @@
             <input type="file" multiple class="custom-file-input" name="filesInput" ngModel>
             <label class="custom-file-label" for="filesInput">Choose file</label>
           </div>
+          <p></p>
+
+          <nb-card>
+            <nb-card-header>Agendar a postagem para:</nb-card-header>
+            <p><small>Deixe em branco para postar imediatamente</small></p>
+            <nb-card-body>
+              <input nbInput placeholder="Data" [nbDatepicker]="picker">
+              <nb-datepicker #picker [min]="min" [max]="max"></nb-datepicker>
+            </nb-card-body>
+          </nb-card>
 
           <p></p>
         <button class='btn btn-primary' type='submit' [disabled]="post.invalid">Postar notícia</button>
   </div>
 </form>
 
-
+<!-- 
 <ul>
   <li class="text" *ngFor="let item of posts">
     {{item.title}}
@@ -59,4 +69,4 @@ Search:
   <li class="text" *ngFor="let item of searchedPosts">
     {{item.title}}
   </li>
-</ul>
+</ul> -->
