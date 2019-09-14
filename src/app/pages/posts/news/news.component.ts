@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Post, PostsService } from './../../../services/posts.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'ngx-news',
@@ -10,10 +11,15 @@ import { Post, PostsService } from './../../../services/posts.service';
 export class NewsComponent implements OnInit {
 	posts: any[];
 	searchedPosts: any[];
-	prevKeys: number[] = [];
-	nextKey: number;
+	prevKeys: string[] = [];
+	nextKey: string;
 	titleQuery$: Subject<string>;
 	textField: string;
+
+	fileToUpload: File;
+
+	@ViewChild('labelImport', { static: true })
+	labelImport: ElementRef;
 
 	constructor(public postsService: PostsService) {
 		// subscribe to changes - input dynamic search
@@ -30,16 +36,19 @@ export class NewsComponent implements OnInit {
 		});
 	}
 
+	onFileChange(files: FileList) {
+		this.labelImport.nativeElement.innerText = Array.from(files).map((f) => f.name).join(', ');
+		this.fileToUpload = files.item(0);
+	}
+
 	public async createPost(formData) {
 		const post: Post = {
 			title: formData.titleInput,
-			createdAt: 0,
-			resumo: formData.resumeInput,
-			fonte: formData.sourceInput,
-			txPublicacao: formData.textInput,
-			imgPrincipal: formData.imageInput,
+			excerpt: formData.resumeInput,
+			font: formData.sourceInput,
+			content: formData.textInput,
+			mainImage: this.fileToUpload,
 			slides: formData.slidesInput,
-			dhUpd: Date(),
 		};
 		await this.postsService.createPost(post);
 	}
@@ -56,7 +65,7 @@ export class NewsComponent implements OnInit {
 	getPosts(startAt) {
 		this.postsService.listPosts(6, startAt).then((list) => {
 			if (list.length === 6) {
-				this.nextKey = list.pop().createdAt;
+				this.nextKey = list.pop().uid;
 			} else {
 				this.nextKey = null;
 			}
@@ -64,12 +73,3 @@ export class NewsComponent implements OnInit {
 		});
 	}
 }
-
-// export class NewsComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
