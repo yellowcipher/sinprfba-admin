@@ -17,9 +17,13 @@ export class NewsComponent implements OnInit {
 	textField: string;
 
 	fileToUpload: File;
+	slidesToUpload: [File];
 
 	@ViewChild('labelImport', { static: true })
 	labelImport: ElementRef;
+
+	@ViewChild('labelSlides', { static: true })
+	labelSlides: ElementRef;
 
 	constructor(public postsService: PostsService) {
 		// subscribe to changes - input dynamic search
@@ -41,6 +45,11 @@ export class NewsComponent implements OnInit {
 		this.fileToUpload = files.item(0);
 	}
 
+	onSlidesChange(slides: [File]) {
+		this.labelSlides.nativeElement.innerText = slides.length + ' files chosen';
+		this.slidesToUpload = slides;
+	}
+
 	public async createPost(formData) {
 		const post: Post = {
 			title: formData.titleInput,
@@ -48,7 +57,7 @@ export class NewsComponent implements OnInit {
 			font: formData.sourceInput,
 			content: formData.textInput,
 			mainImage: this.fileToUpload,
-			slides: formData.slidesInput,
+			slides: this.slidesToUpload,
 		};
 		await this.postsService.createPost(post);
 	}

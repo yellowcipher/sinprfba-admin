@@ -1,27 +1,27 @@
+import { UploadService } from './upload.service';
 import { take, switchMap } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Subject, of } from 'rxjs';
-import { UploadService } from './upload.service';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class CarrouselService {
-	private collection: AngularFirestoreCollection<Carrousel>;
+export class DiretoriasService {
+	private collection: AngularFirestoreCollection<Diretoria>;
 
 	constructor(private afs: AngularFirestore, private uploadService: UploadService) {
-		this.collection = this.afs.collection('carrousel');
+		this.collection = this.afs.collection('diretoria');
 	}
 
 	/**
    * @param post The post object complying to Post interface to be inserted in the Firestore
    */
-	public async createPost(post: Carrousel) {
+	public async createPost(post: Diretoria) {
 		const uid = this.afs.createId();
 		const createdAt = Date.now();
 
-		const postToSend: Carrousel = {
+		const postToSend: Diretoria = {
 			...post,
 			uid,
 			createdAt: new Date(createdAt),
@@ -36,8 +36,8 @@ export class CarrouselService {
 		return this.collection.doc(uid).set(postToSend, { merge: true });
 	}
 
-	public updatePost(id: string, post: Carrousel) {
-		return this.collection.doc<Carrousel>(`${id}`).update(post);
+	public updatePost(id: string, post: Diretoria) {
+		return this.collection.doc<Diretoria>(`${id}`).update(post);
 	}
 
 	public deletePost(id: string) {
@@ -50,7 +50,7 @@ export class CarrouselService {
 
 	public listPosts(offset: number, startAt?: number) {
 		return this.afs
-			.collection<Carrousel>('posts', (ref) => ref.orderBy('createdAt', 'desc').startAt(startAt).limit(offset))
+			.collection<Diretoria>('posts', (ref) => ref.orderBy('createdAt', 'desc').startAt(startAt).limit(offset))
 			.valueChanges({ idField: 'id' })
 			.pipe(take(1)) // this is used to make the observer emmit and END signal, so we can convert to promise
 			.toPromise();
@@ -58,7 +58,7 @@ export class CarrouselService {
 
 	public search(propertyToCompare: string, queryString: string, orderedby: string = propertyToCompare) {
 		return this.afs
-			.collection<Carrousel>('posts', (ref) => ref.where(`${propertyToCompare}`, '==', queryString).orderBy(orderedby))
+			.collection<Diretoria>('posts', (ref) => ref.where(`${propertyToCompare}`, '==', queryString).orderBy(orderedby))
 			.valueChanges()
 			.pipe(take(1))
 			.toPromise();
@@ -67,7 +67,7 @@ export class CarrouselService {
 	// Helper methods
 	public getFirstPost(fieldToOrder: string = 'createdAt', directionStr: firebase.firestore.OrderByDirection = 'desc') {
 		return this.afs
-			.collection<Carrousel>('posts', (ref) => ref.orderBy(fieldToOrder, directionStr).limit(1))
+			.collection<Diretoria>('posts', (ref) => ref.orderBy(fieldToOrder, directionStr).limit(1))
 			.valueChanges({ idField: 'id' })
 			.pipe(take(1))
 			.toPromise();
@@ -91,7 +91,7 @@ export class CarrouselService {
 	}
 }
 
-export interface Carrousel {
+export interface Diretoria {
 	uid?: string;
 	title: string;
 	createdAt?: Date;

@@ -28,46 +28,46 @@ export const MENU_ITEMS: NbMenuItem[] = [
 			},
 		],
 	},
-	{
-		title: 'TESOURARIA',
-		group: true,
-	},
-	{
-		title: 'Fluxo de caixa',
-		icon: 'home-outline',
-	},
-	{
-		title: 'Controle de inventário',
-		icon: 'home-outline',
-	},
-	{
-		title: 'ADMINISTRATIVO',
-		group: true,
-	},
-	{
-		title: 'Controle de ATAs',
-		icon: 'home-outline',
-	},
-	{
-		title: 'Controle de acessos',
-		icon: 'home-outline',
-	},
-	{
-		title: 'Controle de pessoas',
-		icon: 'home-outline',
-	},
-	{
-		title: 'JURÍDICO',
-		group: true,
-	},
-	{
-		title: 'Processos',
-		icon: 'home-outline',
-	},
-	{
-		title: 'SISTEMA',
-		group: true,
-	},
+	// {
+	// 	title: 'TESOURARIA',
+	// 	group: true,
+	// },
+	// {
+	// 	title: 'Fluxo de caixa',
+	// 	icon: 'home-outline',
+	// },
+	// {
+	// 	title: 'Controle de inventário',
+	// 	icon: 'home-outline',
+	// },
+	// {
+	// 	title: 'ADMINISTRATIVO',
+	// 	group: true,
+	// },
+	// {
+	// 	title: 'Controle de ATAs',
+	// 	icon: 'home-outline',
+	// },
+	// {
+	// 	title: 'Controle de acessos',
+	// 	icon: 'home-outline',
+	// },
+	// {
+	// 	title: 'Controle de pessoas',
+	// 	icon: 'home-outline',
+	// },
+	// {
+	// 	title: 'JURÍDICO',
+	// 	group: true,
+	// },
+	// {
+	// 	title: 'Processos',
+	// 	icon: 'home-outline',
+	// },
+	// {
+	// 	title: 'SISTEMA',
+	// 	group: true,
+	// },
 	{
 		title: 'Autenticação',
 		icon: 'home-outline',
@@ -90,14 +90,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
 			},
 		],
 	},
-	{
-		title: 'Variados',
-		icon: 'home-outline',
-		children: [
-			{
-				title: '404',
-				link: '/pages/miscellaneous/404',
-			},
-		],
-	},
+	// {
+	// 	title: 'Variados',
+	// 	icon: 'home-outline',
+	// 	children: [
+	// 		{
+	// 			title: '404',
+	// 			link: '/pages/miscellaneous/404',
+	// 		},
+	// 	],
+	// },
 ];

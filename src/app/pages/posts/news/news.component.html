@@ -29,9 +29,9 @@
 
       <label>Slides:</label>
       <div class="custom-file">
-          <input type="file" multiple class="custom-file-input" name="slidesInput" ngModel>
-          <label class="custom-file-label" for="slidesInput">Choose file</label>
-        </div>
+        <input type="file" multiple class="custom-file-input" id="slidesInput" (change)="onSlidesChange($event.target.files)">
+        <label class="custom-file-label" #labelSlides for="slidesInput"><i class="fas fa-search"></i>Choose files</label>
+      </div>
 
         <label>Arquivos:</label>
         <div class="custom-file">
@@ -48,6 +48,16 @@
               <nb-datepicker #picker [min]="min" [max]="max"></nb-datepicker>
             </nb-card-body>
           </nb-card>
+          <p></p>
+
+          <!-- <nb-card>
+            <nb-card-header>Vigência da postagem até:</nb-card-header>
+            <p><small>Deixe em branco para vigência indefinida</small></p>
+            <nb-card-body>
+              <input nbInput placeholder="Data" [nbDatepicker]="picker">
+              <nb-datepicker #picker [min]="min" [max]="max"></nb-datepicker>
+            </nb-card-body>
+          </nb-card> -->
 
           <p></p>
         <button class='btn btn-primary' type='submit' [disabled]="post.invalid">Postar notícia</button>

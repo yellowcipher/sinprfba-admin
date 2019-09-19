@@ -33,6 +33,14 @@ export class PostsService {
 			delete postToSend.mainImage;
 		}
 
+		if (post.slides != null) {
+			postToSend.slidesUrls = [];
+			for (let i: number = 0; i < post.slides.length; i++) {
+				postToSend.slidesUrls[i] = await this.uploadService.upload(post.slides[i], { folder: uid });
+			}
+			delete postToSend.slides;
+		}
+
 		return this.collection.doc(uid).set(postToSend, { merge: true });
 	}
 
@@ -65,10 +73,7 @@ export class PostsService {
 	}
 
 	// Helper methods
-	public getFirstPost(
-		fieldToOrder: string = 'createdAt',
-		directionStr: firebase.firestore.OrderByDirection = 'desc',
-	) {
+	public getFirstPost(fieldToOrder: string = 'createdAt', directionStr: firebase.firestore.OrderByDirection = 'desc') {
 		return this.afs
 			.collection<Post>('posts', (ref) => ref.orderBy(fieldToOrder, directionStr).limit(1))
 			.valueChanges({ idField: 'id' })
@@ -100,7 +105,7 @@ export interface Post {
 	excerpt: string;
 	font: string;
 	content: string;
-	mainImage?: File;
+	mainImage: File;
 	mainImageUrl?: string;
 	slides?: File[];
 	slidesUrls?: string[];

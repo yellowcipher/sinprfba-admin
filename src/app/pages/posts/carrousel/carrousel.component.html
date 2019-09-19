@@ -11,11 +11,11 @@
       <textarea type="text" required ngModel name="resumeInput" #resumeInput="ngModel" [class.is-invalid]="resumeInput.touched && resumeInput.invalid" class="form-control"></textarea>
       <p *ngIf="resumeInput.touched && !resumeInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
       
-      <label>Imagem:</label>
+      <label>Foto:</label>
       <div class="custom-file">
-          <input required type="file" class="custom-file-input" name="imageInput" id="imageInput" aria-describedby="imageInput" ngModel>
-          <label class="custom-file-label" for="imageInput">Choose file</label>
-        </div>
+        <input type="file" class="custom-file-input" id="imageInput" (change)="onFileChange($event.target.files)">
+        <label class="custom-file-label" #labelImport for="imageInput"><i class="fas fa-search"></i>Choose file</label>
+      </div>
 
 
         <button class='btn btn-primary' type='submit' [disabled]="post.invalid">Adicionar ao carrosel principal</button>
