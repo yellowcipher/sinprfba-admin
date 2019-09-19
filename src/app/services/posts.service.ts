@@ -38,8 +38,8 @@ export class PostsService {
 			for (let i: number = 0; i < post.slides.length; i++) {
 				postToSend.slidesUrls[i] = await this.uploadService.upload(post.slides[i], { folder: uid });
 			}
-			delete postToSend.slides;
 		}
+		delete postToSend.slides;
 
 		return this.collection.doc(uid).set(postToSend, { merge: true });
 	}
