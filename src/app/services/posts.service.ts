@@ -52,7 +52,6 @@ export class PostsService {
 			}
 		}
 		delete recordToSend.slides;
-
 		return this.collection.doc(uid).set(recordToSend, { merge: true });
 	}
 
