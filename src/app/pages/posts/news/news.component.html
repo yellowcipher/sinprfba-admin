@@ -1,82 +1,8 @@
-<p>
-  Notícia
-</p>
-<form #post="ngForm" (ngSubmit)="createPost(post.value)">
-  <div class="form-group">
-      <label for="titleInput">Título:</label>
-      <input type="text" required ngModel name="titleInput" #titleInput="ngModel" [class.is-invalid]="titleInput.touched && titleInput.invalid" class="form-control">
-      <p *ngIf="titleInput.touched && !titleInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
+<nb-card>
+  <nb-card-header> Notícias </nb-card-header>
 
-      <label for="resumeInput">Resumo:</label>
-      <textarea type="text" required ngModel name="resumeInput" #resumeInput="ngModel" [class.is-invalid]="resumeInput.touched && resumeInput.invalid" class="form-control"></textarea>
-      <p *ngIf="resumeInput.touched && !resumeInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
-
-      <label for="sourceInput">Fonte:</label>
-      <textarea type="text" required ngModel name="sourceInput" #sourceInput="ngModel" [class.is-invalid]="sourceInput.touched && sourceInput.invalid" class="form-control"></textarea>
-      <p *ngIf="sourceInput.touched && !sourceInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
-
-      <label for="textInput">Texto:</label>
-      <!-- <textarea type="text" required ngModel name="textInput" #textInput="ngModel" [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></textarea> -->
-      <ejs-richtexteditor type="text" required ngModel name="textInput" #textInput="ngModel" [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></ejs-richtexteditor>
-      <p *ngIf="textInput.touched && !textInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
-
-      
-      <label>Imagem:</label>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" multiple id="importFile" (change)="onFileChange($event.target.files)">
-        <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose file</label>
-      </div>
-
-      <label>Slides:</label>
-      <div class="custom-file">
-        <input type="file" multiple class="custom-file-input" id="slidesInput" (change)="onSlidesChange($event.target.files)">
-        <label class="custom-file-label" #labelSlides for="slidesInput"><i class="fas fa-search"></i>Choose files</label>
-      </div>
-
-        <label>Arquivos:</label>
-        <div class="custom-file">
-            <input type="file" multiple class="custom-file-input" name="filesInput" ngModel>
-            <label class="custom-file-label" for="filesInput">Choose file</label>
-          </div>
-          <p></p>
-
-          <nb-card>
-            <nb-card-header>Agendar a postagem para:</nb-card-header>
-            <p><small>Deixe em branco para postar imediatamente</small></p>
-            <nb-card-body>
-              <input nbInput placeholder="Data" [nbDatepicker]="picker">
-              <nb-datepicker #picker [min]="min" [max]="max"></nb-datepicker>
-            </nb-card-body>
-          </nb-card>
-          <p></p>
-
-          <!-- <nb-card>
-            <nb-card-header>Vigência da postagem até:</nb-card-header>
-            <p><small>Deixe em branco para vigência indefinida</small></p>
-            <nb-card-body>
-              <input nbInput placeholder="Data" [nbDatepicker]="picker">
-              <nb-datepicker #picker [min]="min" [max]="max"></nb-datepicker>
-            </nb-card-body>
-          </nb-card> -->
-
-          <p></p>
-        <button class='btn btn-primary' type='submit' [disabled]="post.invalid">Postar notícia</button>
-  </div>
-</form>
-
-<!-- 
-<ul>
-  <li class="text" *ngFor="let item of posts">
-    {{item.title}}
-  </li>
-</ul>
-<button (click)="previousPage()" [disabled]="!prevKeys?.length"> Previous </button>
-<button (click)="nextPage()" [disabled]="!nextKey"> Next </button> <br>
-
-Search:
-<input type="text" (input)="titleQuery$.next($event.target.value)" placeholder="Search here">
-<ul>
-  <li class="text" *ngFor="let item of searchedPosts">
-    {{item.title}}
-  </li>
-</ul> -->
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source"  (create)="onCreate($event)" (edit)="onEdit($event)" (delete)="onDelete($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

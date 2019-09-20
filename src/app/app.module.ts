@@ -26,6 +26,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
+// Locale
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt, 'pt');
+
 @NgModule({
 	declarations: [ AppComponent ],
 	imports: [
@@ -53,5 +59,11 @@ import { environment } from '../environments/environment';
 		CoreModule.forRoot(),
 	],
 	bootstrap: [ AppComponent ],
+	providers: [
+		{
+			provide: LOCALE_ID,
+			useValue: 'pt',
+		},
+	],
 })
 export class AppModule {}

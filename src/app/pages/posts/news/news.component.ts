@@ -1,84 +1,93 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Post, PostsService } from './../../../services/posts.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { LocalDataSource } from 'ng2-smart-table';
+import { Subscription } from 'rxjs';
+import { formatDate } from '@angular/common';
+import { NbDialogService } from '@nebular/theme';
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PostsService } from '../../../services/posts.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
 	selector: 'ngx-news',
 	templateUrl: './news.component.html',
 	styleUrls: [ './news.component.scss' ],
 })
-export class NewsComponent implements OnInit {
-	posts: any[];
-	searchedPosts: any[];
-	prevKeys: string[] = [];
-	nextKey: string;
-	titleQuery$: Subject<string>;
-	textField: string;
+export class NewsComponent implements OnInit, OnDestroy {
+	recordsSub: Subscription;
 
-	fileToUpload: File;
-	slidesToUpload: [File];
+	settings = {
+		mode: 'external',
+		add: {
+			addButtonContent: '<i class="nb-plus"></i>',
+			createButtonContent: '<i class="nb-checkmark"></i>',
+			cancelButtonContent: '<i class="nb-close"></i>',
+		},
+		edit: {
+			editButtonContent: '<i class="nb-edit"></i>',
+			saveButtonContent: '<i class="nb-checkmark"></i>',
+			cancelButtonContent: '<i class="nb-close"></i>',
+		},
+		delete: {
+			deleteButtonContent: '<i class="nb-trash"></i>',
+			confirmDelete: true,
+		},
+		columns: {
+			mainImageUrl: {
+				title: 'Imagem',
+				filter: false,
+				type: 'html',
+				valuePrepareFunction: (cell, row) =>
+					cell ? this.domSanitizer.bypassSecurityTrustHtml(`<img src="${cell}" width="100">`) : null,
+			},
+			title: {
+				title: 'Título',
+				type: 'string',
+			},
+			createdAt: {
+				title: 'Criado em',
+				valuePrepareFunction: (cell, row) => (cell ? formatDate(cell.toDate(), 'short', 'pt') : null),
+			},
+			updatedAt: {
+				title: 'Atualizado em',
+				valuePrepareFunction: (cell, row) => (cell ? formatDate(cell.toDate(), 'short', 'pt') : null),
+			},
+		},
+	};
 
-	@ViewChild('labelImport', { static: true })
-	labelImport: ElementRef;
+	source: LocalDataSource = new LocalDataSource();
 
-	@ViewChild('labelSlides', { static: true })
-	labelSlides: ElementRef;
-
-	constructor(public postsService: PostsService) {
-		// subscribe to changes - input dynamic search
-		this.titleQuery$ = new Subject<string>();
-		const queryObservable = this.postsService.dynamicSearch(this.titleQuery$, 'title', 5);
-		queryObservable.subscribe((queriedItems) => {
-			this.searchedPosts = queriedItems;
-		});
-	}
+	constructor(
+		private postsService: PostsService,
+		private dialogService: NbDialogService,
+		private domSanitizer: DomSanitizer,
+		private route: ActivatedRoute,
+		private router: Router,
+	) {}
 
 	ngOnInit() {
-		this.postsService.getFirstPost().then((firstPost) => {
-			this.getPosts(firstPost[0].createdAt);
+		this.recordsSub = this.postsService.records.subscribe((recordsList) => {
+			this.source.load(recordsList);
 		});
 	}
 
-	onFileChange(files: FileList) {
-		this.labelImport.nativeElement.innerText = Array.from(files).map((f) => f.name).join(', ');
-		this.fileToUpload = files.item(0);
+	ngOnDestroy() {
+		this.recordsSub.unsubscribe();
 	}
 
-	onSlidesChange(slides: [File]) {
-		this.labelSlides.nativeElement.innerText = slides.length + ' files chosen';
-		this.slidesToUpload = slides;
+	onCreate({ source }) {
+		this.router.navigate([ './new' ], { relativeTo: this.route });
 	}
 
-	public async createPost(formData) {
-		const post: Post = {
-			title: formData.titleInput,
-			excerpt: formData.resumeInput,
-			font: formData.sourceInput,
-			content: formData.textInput,
-			mainImage: this.fileToUpload,
-			slides: this.slidesToUpload,
-		};
-		await this.postsService.createPost(post);
+	onEdit({ data, source }) {
+		this.router.navigate([ './edit', data['uid'] ], { relativeTo: this.route });
 	}
 
-	previousPage() {
-		this.getPosts(this.prevKeys.pop());
-	}
-
-	nextPage() {
-		this.prevKeys.push(this.posts[0].createdAt);
-		this.getPosts(this.nextKey);
-	}
-
-	getPosts(startAt) {
-		this.postsService.listPosts(6, startAt).then((list) => {
-			if (list.length === 6) {
-				this.nextKey = list.pop().uid;
-			} else {
-				this.nextKey = null;
+	onDelete({ data, source }) {
+		this.dialogService.open(DialogDeleteComponent).onClose.subscribe((deleted) => {
+			if (deleted === true) {
+				this.postsService.delete(data);
 			}
-			this.posts = list;
 		});
 	}
 }

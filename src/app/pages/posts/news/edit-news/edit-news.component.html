@@ -1,0 +1,40 @@
+<nb-card>
+  <nb-card-header>Visualizar notícia</nb-card-header>
+  <nb-card-body *ngIf="post$ | async as post">
+    <div class="form-group row">
+      <label for="inputTitle" class="label col-sm-2 form-control-label">Título</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="post.title" type="text" nbInput fullWidth id="inputTitle" placeholder="Título">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputExcerpt" class="label col-sm-2 form-control-label">Resumo</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="post.excerpt" type="text" nbInput fullWidth id="inputExcerpt" placeholder="Resumo">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputFont" class="label col-sm-2 form-control-label">Fonte</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="post.font" type="text" nbInput fullWidth id="inputFont" placeholder="Fonte">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputContent" class="label col-sm-2 form-control-label">Conteúdo</label>
+      <div class="col-sm-10">
+        <ejs-richtexteditor [(ngModel)]="post.content"></ejs-richtexteditor>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputImage" class="label col-sm-2 form-control-label">Imagem</label>
+      <div class="col-sm-10">
+        <img [src]="post.mainImageUrl" style="width: 100%">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button nbButton status="success" (click)="update(post)">Salvar</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

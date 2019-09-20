@@ -20,6 +20,10 @@ export class UploadService {
 		});
 	}
 
+	removeFile(path: string): Promise<void> {
+		return this.storage.ref(path).delete().toPromise();
+	}
+
 	private join(...args: string[]) {
 		// Split the inputs into a list of path commands.
 		let parts = [];
