@@ -15,7 +15,7 @@ export class PostsService {
 	private MAIN_IMAGE_NAME = 'mainImage.jpg';
 
 	constructor(private afs: AngularFirestore, private uploadService: UploadService) {
-		this.collection = this.afs.collection('carrousel');
+		this.collection = this.afs.collection('board');
 
 		this.collection.valueChanges().subscribe((recordList) => this.records.next(recordList));
 	}

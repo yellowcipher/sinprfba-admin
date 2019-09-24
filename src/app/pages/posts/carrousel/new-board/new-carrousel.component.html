@@ -1,15 +1,15 @@
 <p>
-  Nova diretoria
+  Novo slide
 </p>
 <form #post="ngForm" (ngSubmit)="createPost(post.value)">
   <div class="form-group">
-    <label for="titleInput">Nome:</label>
+    <label for="titleInput">Título:</label>
     <input type="text" required ngModel name="titleInput" #titleInput="ngModel"
       [class.is-invalid]="titleInput.touched && titleInput.invalid" class="form-control">
     <p *ngIf="titleInput.touched && !titleInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
 
 
-    <label for="textInput">Descrição:</label>
+    <label for="textInput">Resumo:</label>
     <ejs-richtexteditor type="text" required ngModel name="textInput" #textInput="ngModel"
       [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></ejs-richtexteditor>
     <p *ngIf="textInput.touched && !textInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
@@ -21,13 +21,7 @@
       <label class="custom-file-label" #labelImport for="imageInput"><i class="fas fa-search"></i>Choose file</label>
     </div>
 
-    <!-- <label>Imagem:</label>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" multiple id="importFile" (change)="onFileChange($event.target.files)">
-      <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose file</label>
-    </div> -->
-
     <p></p>
-    <button class='btn btn-primary' type='submit' [disabled]="post.invalid">Cadastrar diretoria</button>
+    <button class='btn btn-primary' type='submit' [disabled]="post.invalid">Cadastrar novo slide</button>
   </div>
 </form>

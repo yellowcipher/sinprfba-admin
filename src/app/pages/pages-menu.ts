@@ -24,7 +24,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
 			},
 			{
 				title: 'Diretorias',
-				link: '/pages/posts/diretorias',
+				link: '/pages/posts/board',
 			},
 		],
 	},

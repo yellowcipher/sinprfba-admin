@@ -5,15 +5,15 @@ import { formatDate } from '@angular/common';
 import { NbDialogService } from '@nebular/theme';
 import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PostsService } from '../../../services/carrousel.service';
+import { PostsService } from '../../../services/board.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-	selector: 'ngx-carrousel',
-	templateUrl: './carrousel.component.html',
-	styleUrls: [ './carrousel.component.scss' ],
+	selector: 'ngx-board',
+	templateUrl: './board.component.html',
+	styleUrls: [ './board.component.scss' ],
 })
-export class CarrouselComponent implements OnInit, OnDestroy {
+export class BoardComponent implements OnInit, OnDestroy {
 	recordsSub: Subscription;
 
 	settings = {

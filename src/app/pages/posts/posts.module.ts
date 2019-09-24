@@ -10,6 +10,11 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
+import { BoardComponent } from './board/board.component';
+import { NewBoardComponent } from './board/new-board/new-board.component';
+import { EditBoardComponent } from './board/edit-board/edit-board.component';
+import { NewCarrouselComponent } from './carrousel/new-board/new-carrousel.component';
+import { EditCarrouselComponent } from './carrousel/edit-carrousel/edit-carrousel.component';
 
 const COMPONENTS = [ DialogDeleteComponent ];
 
@@ -32,7 +37,16 @@ const MODULES = [
 
 @NgModule({
 	imports: [ ...MODULES ],
-	declarations: [ ...routedComponents, ...COMPONENTS, EditNewsComponent ],
+	declarations: [
+		...routedComponents,
+		...COMPONENTS,
+		EditNewsComponent,
+		BoardComponent,
+		NewBoardComponent,
+		EditBoardComponent,
+		NewCarrouselComponent,
+		EditCarrouselComponent,
+	],
 	entryComponents: [ ...ENTRY_COMPONENTS ],
 })
 export class PostsModule {}

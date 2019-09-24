@@ -20,3 +20,37 @@ export interface Post {
 	// tags: string;
 	// estado: string;//cadastrado, cancelado, publicado, suspenso, não vigente
 }
+
+export interface Director {
+	uid?: string;
+	title: string;
+	excerpt: string;
+	mainImage: File;
+	mainImageUrl?: string;
+	createdAt?: firebase.firestore.FieldValue;
+	updatedAt?: firebase.firestore.FieldValue;
+	// userUpd: string;
+	// dhPublicacao: string;
+	// dhVigência?: string;
+	// areaSite: string;
+	// destaque: boolean;
+	// tags: string;
+	// estado: string;//cadastrado, cancelado, publicado, suspenso, não vigente
+}
+
+export interface Carrousel {
+	uid?: string;
+	title: string;
+	excerpt: string;
+	mainImage: File;
+	mainImageUrl?: string;
+	createdAt?: firebase.firestore.FieldValue;
+	updatedAt?: firebase.firestore.FieldValue;
+	// userUpd: string;
+	// dhPublicacao: string;
+	// dhVigência?: string;
+	// areaSite: string;
+	// destaque: boolean;
+	// tags: string;
+	// estado: string;//cadastrado, cancelado, publicado, suspenso, não vigente
+}
