@@ -11,6 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class NewNewsComponent {
 	fileToUpload: File;
 	slidesToUpload: [File];
+	mainCarrouselCheckbox: boolean = false;
+	secondaryCarrouselCheckbox: boolean = false;
+	bannerCheckbox: boolean = false;
 
 	@ViewChild('labelImport', { static: true })
 	labelImport: ElementRef;
@@ -38,6 +41,9 @@ export class NewNewsComponent {
 			content: formData.textInput,
 			mainImage: this.fileToUpload,
 			slides: this.slidesToUpload,
+			mainCarrousel: formData.mainCarrouselCheckbox,
+			secondaryCarrousel: formData.secondaryCarrouselCheckbox,
+			banner: formData.bannerCheckbox,
 		};
 		await this.postsService.add(post);
 		this.router.navigate([ '../' ], { relativeTo: this.route });

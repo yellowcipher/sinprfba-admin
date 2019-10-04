@@ -50,33 +50,21 @@
           </nb-card>
           <p></p>
 
-          <!-- <nb-card>
-            <nb-card-header>Vigência da postagem até:</nb-card-header>
-            <p><small>Deixe em branco para vigência indefinida</small></p>
+
+          <nb-card>
+            <nb-card-header>Onde essa notícia aparecerá?</nb-card-header>
             <nb-card-body>
-              <input nbInput placeholder="Data" [nbDatepicker]="picker">
-              <nb-datepicker #picker [min]="min" [max]="max"></nb-datepicker>
+              <nb-checkbox [(ngModel)]="mainCarrouselCheckbox" name="mainCarrouselCheckbox">Slideshow principal</nb-checkbox>
+              <nb-checkbox [(ngModel)]="secondaryCarrouselCheckbox" name="secondaryCarrouselCheckbox">Slideshow secundário</nb-checkbox>
+              <nb-checkbox [(ngModel)]="bannerCheckbox" name="bannerCheckbox">Banner</nb-checkbox>
+              <p *ngIf="carrouselCheckbox">Foi</p>
             </nb-card-body>
-          </nb-card> -->
+          </nb-card>
+          
+
+         
 
           <p></p>
         <button class='btn btn-primary' type='submit' [disabled]="post.invalid">Postar notícia</button>
   </div>
 </form>
-
-<!-- 
-<ul>
-  <li class="text" *ngFor="let item of posts">
-    {{item.title}}
-  </li>
-</ul>
-<button (click)="previousPage()" [disabled]="!prevKeys?.length"> Previous </button>
-<button (click)="nextPage()" [disabled]="!nextKey"> Next </button> <br>
-
-Search:
-<input type="text" (input)="titleQuery$.next($event.target.value)" placeholder="Search here">
-<ul>
-  <li class="text" *ngFor="let item of searchedPosts">
-    {{item.title}}
-  </li>
-</ul> -->

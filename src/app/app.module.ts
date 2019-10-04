@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {
 	NbChatModule,
 	NbDatepickerModule,
+	NbCheckboxModule,
 	NbDialogModule,
 	NbMenuModule,
 	NbSidebarModule,

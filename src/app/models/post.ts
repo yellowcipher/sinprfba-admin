@@ -12,6 +12,11 @@ export interface Post {
 	filesUrls?: string[];
 	createdAt?: firebase.firestore.FieldValue;
 	updatedAt?: firebase.firestore.FieldValue;
+	mainCarrousel: boolean;
+	secondaryCarrousel: boolean;
+	banner: boolean;
+	// secondaryCarrousel: boolean;
+	// mainAd: boolean;
 	// userUpd: string;
 	// dhPublicacao: string;
 	// dhVigência?: string;
