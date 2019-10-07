@@ -12,6 +12,8 @@ export interface Post {
 	filesUrls?: string[];
 	createdAt?: firebase.firestore.FieldValue;
 	updatedAt?: firebase.firestore.FieldValue;
+	startDate?: Date;
+	endDate?: Date;
 	mainCarrousel: boolean;
 	secondaryCarrousel: boolean;
 	banner: boolean;

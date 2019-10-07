@@ -44,8 +44,8 @@
             <nb-card-header>Agendar a postagem para:</nb-card-header>
             <p><small>Deixe em branco para postar imediatamente</small></p>
             <nb-card-body>
-              <input nbInput placeholder="Data" [nbDatepicker]="picker">
-              <nb-datepicker #picker></nb-datepicker>
+              <input nbInput placeholder="Data" [nbDatepicker]="startDatePicker" name="startDatePicker" [formControl]="startDate">
+              <nb-datepicker #startDatePicker></nb-datepicker>
             </nb-card-body>
           </nb-card>
           <p></p>

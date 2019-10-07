@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { PostsService } from '../../../../services/posts.service';
 import { Post } from '../../../../models/post';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'ngx-new-news',
@@ -14,6 +15,7 @@ export class NewNewsComponent {
 	mainCarrouselCheckbox: boolean = false;
 	secondaryCarrouselCheckbox: boolean = false;
 	bannerCheckbox: boolean = false;
+	startDate = new FormControl(new Date());
 
 	@ViewChild('labelImport', { static: true })
 	labelImport: ElementRef;
@@ -44,6 +46,7 @@ export class NewNewsComponent {
 			mainCarrousel: formData.mainCarrouselCheckbox,
 			secondaryCarrousel: formData.secondaryCarrouselCheckbox,
 			banner: formData.bannerCheckbox,
+			startDate: this.startDate.value,
 		};
 		await this.postsService.add(post);
 		this.router.navigate([ '../' ], { relativeTo: this.route });
