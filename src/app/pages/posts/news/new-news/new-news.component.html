@@ -48,6 +48,15 @@
               <nb-datepicker #startDatePicker></nb-datepicker>
             </nb-card-body>
           </nb-card>
+
+          <nb-card>
+            <nb-card-header>Encerrar postagem em:</nb-card-header>
+            <p><small>Deixe em branco para não encerrar</small></p>
+            <nb-card-body>
+              <input nbInput placeholder="Data" [nbDatepicker]="endDatePicker" name="endDatePicker" [formControl]="endDate">
+              <nb-datepicker #endDatePicker></nb-datepicker>
+            </nb-card-body>
+          </nb-card>
           <p></p>
 
 
@@ -57,7 +66,6 @@
               <nb-checkbox [(ngModel)]="mainCarrouselCheckbox" name="mainCarrouselCheckbox">Slideshow principal</nb-checkbox>
               <nb-checkbox [(ngModel)]="secondaryCarrouselCheckbox" name="secondaryCarrouselCheckbox">Slideshow secundário</nb-checkbox>
               <nb-checkbox [(ngModel)]="bannerCheckbox" name="bannerCheckbox">Banner</nb-checkbox>
-              <p *ngIf="carrouselCheckbox">Foi</p>
             </nb-card-body>
           </nb-card>
           

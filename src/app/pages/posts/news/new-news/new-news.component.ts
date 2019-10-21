@@ -16,6 +16,7 @@ export class NewNewsComponent {
 	secondaryCarrouselCheckbox: boolean = false;
 	bannerCheckbox: boolean = false;
 	startDate = new FormControl(new Date());
+	endDate: Date;
 
 	@ViewChild('labelImport', { static: true })
 	labelImport: ElementRef;
@@ -47,6 +48,7 @@ export class NewNewsComponent {
 			secondaryCarrousel: formData.secondaryCarrouselCheckbox,
 			banner: formData.bannerCheckbox,
 			startDate: this.startDate.value,
+			endDate: this.endDate || null,
 		};
 		await this.postsService.add(post);
 		this.router.navigate([ '../' ], { relativeTo: this.route });
