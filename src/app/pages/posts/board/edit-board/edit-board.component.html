@@ -16,7 +16,15 @@
     <div class="form-group row">
       <label for="inputImage" class="label col-sm-2 form-control-label">Imagem</label>
       <div class="col-sm-10">
-        <img [src]="post.mainImageUrl" style="width: 100%">
+        <div *ngIf="!isEditingImage">
+          <img [src]="post.mainImageUrl" style="width: 100%">
+          <button nbButton status="info" (click)="startEditing()">Editar</button>
+        </div>
+        <div *ngIf="isEditingImage" class="custom-file">
+          <input type="file" class="custom-file-input" multiple id="importFile" (change)="onFileChange($event.target.files)">
+          <label class="custom-file-label" #imageInput for="importFile"><i class="fas fa-search"></i> Choose file</label>
+          <button nbButton status="danger" (click)="cancelEditing()">Cancelar</button>
+        </div>
       </div>
     </div>
     <div class="form-group row">
