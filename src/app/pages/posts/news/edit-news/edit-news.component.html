@@ -39,20 +39,37 @@
         </div>
       </div>
     </div>
-        <div class="form-group row">
-          <label for="inputFont" class="label col-sm-2 form-control-label">Onde irá aparecer</label>
-          <div class="col-sm-10">
-            <nb-card>
-              <nb-card-body>
-                <nb-checkbox [(ngModel)]="post.mainCarrousel" name="mainCarrouselCheckbox">Slideshow principal</nb-checkbox>
-                <nb-checkbox [(ngModel)]="post.secondaryCarrousel" name="secondaryCarrouselCheckbox">Slideshow secundário
-                </nb-checkbox>
-                <nb-checkbox [(ngModel)]="post.banner" name="bannerCheckbox">Banner</nb-checkbox>
-                <p *ngIf="carrouselCheckbox">Foi</p>
-              </nb-card-body>
-            </nb-card>
-          </div>
-        </div>
+    <nb-card>
+      <nb-card-header>Agendar a postagem para:</nb-card-header>
+      <p><small>Deixe em branco para postar imediatamente</small></p>
+      <nb-card-body>
+        <input nbInput placeholder="Data" [nbDatepicker]="startDatePicker" name="startDatePicker" [formControl]="startDate">
+        <nb-datepicker #startDatePicker></nb-datepicker>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>Encerrar postagem em:</nb-card-header>
+      <p><small>Deixe em branco para não encerrar</small></p>
+      <nb-card-body>
+        <input nbInput placeholder="Data" [nbDatepicker]="endDatePicker" name="endDatePicker" [formControl]="endDate">
+        <nb-datepicker #endDatePicker></nb-datepicker>
+      </nb-card-body>
+    </nb-card>
+    <div class="form-group row">
+      <label for="inputFont" class="label col-sm-2 form-control-label">Onde irá aparecer</label>
+      <div class="col-sm-10">
+        <nb-card>
+          <nb-card-body>
+            <nb-checkbox [(ngModel)]="post.mainCarrousel" name="mainCarrouselCheckbox">Slideshow principal</nb-checkbox>
+            <nb-checkbox [(ngModel)]="post.secondaryCarrousel" name="secondaryCarrouselCheckbox">Slideshow secundário
+            </nb-checkbox>
+            <nb-checkbox [(ngModel)]="post.banner" name="bannerCheckbox">Banner</nb-checkbox>
+            <p *ngIf="carrouselCheckbox">Foi</p>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
     <div class="form-group row">
       <div class="offset-sm-2 col-sm-10">
         <button nbButton status="success" (click)="update(post)">Salvar</button>
