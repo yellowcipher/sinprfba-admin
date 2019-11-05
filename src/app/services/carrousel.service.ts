@@ -30,30 +30,36 @@ export class PostsService {
 			createdAt,
 		};
 
-		// Upload and remove image files
-		if (record.mainImage != null) {
-			recordToSend.mainImageUrl = await this.uploadService.upload(record.mainImage, {
-				folder: uid,
-				filename: this.MAIN_IMAGE_NAME,
-			});
-		}
-		delete recordToSend.mainImage;
+		await this.uploadImage(recordToSend);
 
 		return this.collection.doc(uid).set(recordToSend, { merge: true });
 	}
 
-	update(record: Director) {
+	async update(record: Director) {
 		const updatedAt = firebase.firestore.FieldValue.serverTimestamp();
 		const recordToUpdate: Director = {
 			...record,
 			updatedAt,
 		};
+
+		await this.uploadImage(recordToUpdate);
+
 		return this.collection.doc(recordToUpdate.uid).set(recordToUpdate, { merge: true });
 	}
 
 	async delete(record: Director): Promise<void> {
 		await this.deleteStorageFiles(record);
 		return this.collection.doc(record.uid).delete();
+	}
+
+	private async uploadImage(record: Director) {
+		if (record.mainImage != null) {
+			record.mainImageUrl = await this.uploadService.upload(record.mainImage, {
+				folder: record.uid,
+				filename: this.MAIN_IMAGE_NAME,
+			});
+		}
+		delete record.mainImage;
 	}
 
 	private deleteStorageFiles(record: Director): Promise<any[]> {
