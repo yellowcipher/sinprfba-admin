@@ -17,8 +17,9 @@
 
       <label for="textInput">Texto:</label>
       <!-- <textarea type="text" required ngModel name="textInput" #textInput="ngModel" [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></textarea> -->
-      <ejs-richtexteditor type="text" required ngModel name="textInput" #textInput="ngModel" [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></ejs-richtexteditor>
+      <ejs-richtexteditor [toolbarSettings]="{items: ['Bold',  'Italic', 'Underline', 'StrikeThrough', '|','FontSize', 'FontColor', 'Alignments', '|', 'Undo', 'Redo']}" type="text" required ngModel name="textInput" #textInput="ngModel" [class.is-invalid]="textInput.touched && textInput.invalid" class="form-control"></ejs-richtexteditor>
       <p *ngIf="textInput.touched && !textInput.valid"><small style="color:red;">*Campo obrigatório</small></p>
+
 
       
       <label>Imagem:</label>
@@ -67,6 +68,7 @@
               <nb-checkbox [(ngModel)]="secondaryCarrouselCheckbox" name="secondaryCarrouselCheckbox">Slideshow secundário</nb-checkbox>
               <nb-checkbox [(ngModel)]="bannerCheckbox" name="bannerCheckbox">Banner</nb-checkbox>
             </nb-card-body>
+            <p><small>Aviso: ela automaticamente já aparecerá na aba "Notícias" do site.</small></p>
           </nb-card>
           
 
