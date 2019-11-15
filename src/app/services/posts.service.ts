@@ -26,11 +26,13 @@ export class PostsService {
 	async add(record: Post) {
 		const uid = this.afs.createId();
 		const createdAt = firebase.firestore.FieldValue.serverTimestamp();
+		const updatedAt = firebase.firestore.FieldValue.serverTimestamp();
 
 		const recordToSend: Post = {
 			...record,
 			uid,
 			createdAt,
+			updatedAt,
 		};
 
 		await this.uploadFiles(recordToSend);
