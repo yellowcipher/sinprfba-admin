@@ -67,6 +67,10 @@ const routes: Routes = [
 				loadChildren: () => import('./posts/posts.module').then((m) => m.PostsModule),
 			},
 			{
+				path: 'users',
+				loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
+			},
+			{
 				path: '',
 				redirectTo: 'dashboard',
 				pathMatch: 'full',

@@ -28,6 +28,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
 			},
 		],
 	},
+	{
+		title: 'Usuários',
+		icon: 'home-outline',
+		link: '/pages/users',
+	},
 	// {
 	// 	title: 'TESOURARIA',
 	// 	group: true,

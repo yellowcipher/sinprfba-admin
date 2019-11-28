@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header>Detalhes do usuário</nb-card-header>
+  <nb-card-body *ngIf="record$ | async as record">
+    <div class="row">
+      <label class="label col-sm-3">ID</label>
+      <p class="col-sm-9">{{record.uid}}</p>
+    </div>
+    <div class="row">
+      <label class="label col-sm-3">Nome</label>
+      <p class="col-sm-9">{{record.name}}</p>
+    </div>
+  </nb-card-body>
+</nb-card>
