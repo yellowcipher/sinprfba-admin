@@ -2,12 +2,88 @@
   <nb-card-header>Detalhes do usuário</nb-card-header>
   <nb-card-body *ngIf="record$ | async as record">
     <div class="row">
-      <label class="label col-sm-3">ID</label>
-      <p class="col-sm-9">{{record.uid}}</p>
+      <label class="label col-sm-3">Nome</label>
+      <p class="col-sm-9">{{record.firstName}}</p>
     </div>
     <div class="row">
-      <label class="label col-sm-3">Nome</label>
-      <p class="col-sm-9">{{record.name}}</p>
+      <label class="label col-sm-3">Sobrenome</label>
+      <p class="col-sm-9">{{record.lastName}}</p>
+    </div>
+    <div class="row">
+      <label class="label col-sm-3">E-mail</label>
+      <p class="col-sm-9">{{record.email}}</p>
+    </div>
+    <div class="row">
+      <label class="label col-sm-3">Telefone principal</label>
+      <p class="col-sm-9">{{record.mainPhone.type}}: {{record.mainPhone.number}}</p>
+    </div>
+    <div class="row" *ngIf='record.secondaryPhone.number'>
+      <label class="label col-sm-3">Telefone secundário</label>
+      <p class="col-sm-9">{{record.secondaryPhone.type}}: {{record.secondaryPhone.number}}</p>
+    </div>
+    <div class="row">
+      <label class="label col-sm-3">CPF</label>
+      <p class="col-sm-9">{{record.cpf}}</p>
+    </div>
+    <div class="row">
+      <label class="label col-sm-3">Endereço principal</label>
+      <p class="col-sm-9">{{record.mainAddress.street}}, {{record.mainAddress.number}} - {{record.mainAddress.complement}} | {{record.mainAddress.zipCode}}, {{record.mainAddress.district}}, {{record.mainAddress.city}} - {{record.mainAddress.state}}</p>
+    </div>
+    <div class="row" *ngIf='record.secondaryAddress.zipCode'>
+      <label class="label col-sm-3">Endereço secundário</label>
+      <p class="col-sm-9">{{record.secondaryAddress.street}}, {{record.secondaryAddress.number}} - {{record.secondaryAddress.complement}} | {{record.secondaryAddress.zipCode}}, {{record.secondaryAddress.district}}, {{record.secondaryAddress.city}} - {{record.secondaryAddress.state}}</p>
+    </div>
+    <div class="row">
+      <label class="label col-sm-3">Gênero</label>
+      <p class="col-sm-9">{{record.userInfo.gender}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.maritalStatus'>
+      <label class="label col-sm-3">Estado civil</label>
+      <p class="col-sm-9">{{record.userInfo.maritalStatus}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.scholarity'>
+      <label class="label col-sm-3">Escolaridade</label>
+      <p class="col-sm-9">{{record.userInfo.scholarity}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.profession'>
+      <label class="label col-sm-3">Profissão</label>
+      <p class="col-sm-9">{{record.userInfo.profession}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.fatherName'>
+      <label class="label col-sm-3">Nome do pai</label>
+      <p class="col-sm-9">{{record.userInfo.fatherName}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.motherName'>
+      <label class="label col-sm-3">Nome da mãe</label>
+      <p class="col-sm-9">{{record.userInfo.motherName}}</p>
+    </div>
+    <div class="row">
+      <label class="label col-sm-3">Data de Nascimento</label>
+      <p class="col-sm-9">{{record.userInfo.birthdate}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.placeOfBirth'>
+      <label class="label col-sm-3">Naturalidade</label>
+      <p class="col-sm-9">{{record.userInfo.placeOfBirth}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.nationality'>
+      <label class="label col-sm-3">Nacionalidade</label>
+      <p class="col-sm-9">{{record.userInfo.nationality}}</p>
+    </div>
+    <div class="row">
+      <label class="label col-sm-3">Nº de identidade</label>
+      <p class="col-sm-9">{{record.userInfo.identityNumber}}, {{record.userInfo.identityInstitution}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.ctps'>
+      <label class="label col-sm-3">Carteira de Trabalho</label>
+      <p class="col-sm-9">{{record.userInfo.ctps}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.OAB'>
+      <label class="label col-sm-3">OAB</label>
+      <p class="col-sm-9">{{record.userInfo.OAB}}</p>
+    </div>
+    <div class="row" *ngIf='record.userInfo.professionalIdentity'>
+      <label class="label col-sm-3">Identidade Profissional</label>
+      <p class="col-sm-9">{{record.userInfo.professionalIdentity}}</p>
     </div>
   </nb-card-body>
 </nb-card>

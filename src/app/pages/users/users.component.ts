@@ -21,14 +21,14 @@ export class UsersComponent implements OnInit, OnDestroy {
 			delete: false,
 		},
 		edit: {
-			editButtonContent: '<i class="nb-search"></i>',
+			editButtonContent: '<i class="nb-maximize"></i>',
 		},
 		columns: {
-			uid: {
-				title: 'ID',
+			cpf: {
+				title: 'CPF',
 				type: 'string',
 			},
-			name: {
+			firstName: {
 				title: 'Nome',
 				type: 'string',
 			},
@@ -36,14 +36,14 @@ export class UsersComponent implements OnInit, OnDestroy {
 				title: 'Email',
 				type: 'string',
 			},
-			createdAt: {
-				title: 'Criado em',
-				valuePrepareFunction: (cell, row) => (cell ? formatDate(cell.toDate(), 'short', 'pt') : null),
-			},
-			updatedAt: {
-				title: 'Atualizado em',
-				valuePrepareFunction: (cell, row) => (cell ? formatDate(cell.toDate(), 'short', 'pt') : null),
-			},
+			// createdAt: {
+			// 	title: 'Criado em',
+			// 	valuePrepareFunction: (cell, row) => (cell ? formatDate(cell.toDate(), 'short', 'pt') : null),
+			// },
+			// updatedAt: {
+			// 	title: 'Atualizado em',
+			// 	valuePrepareFunction: (cell, row) => (cell ? formatDate(cell.toDate(), 'short', 'pt') : null),
+			// },
 		},
 	};
 
