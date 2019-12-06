@@ -12,7 +12,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
 	},
 	{
 		title: 'Publicar',
-		icon: 'home-outline',
+		icon: 'edit-outline',
 		children: [
 			{
 				title: 'Notícia',
@@ -30,7 +30,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
 	},
 	{
 		title: 'Usuários',
-		icon: 'home-outline',
+		icon: 'people-outline',
 		link: '/pages/users',
 	},
 	// {
@@ -73,28 +73,28 @@ export const MENU_ITEMS: NbMenuItem[] = [
 	// 	title: 'SISTEMA',
 	// 	group: true,
 	// },
-	{
-		title: 'Autenticação',
-		icon: 'home-outline',
-		children: [
-			{
-				title: 'Entrar',
-				link: '/auth/login',
-			},
-			{
-				title: 'Registrar',
-				link: '/auth/register',
-			},
-			{
-				title: 'Esqueci minha senha',
-				link: '/auth/request-password',
-			},
-			{
-				title: 'Nova Senha',
-				link: '/auth/reset-password',
-			},
-		],
-	},
+	// {
+	// 	title: 'Autenticação',
+	// 	icon: 'home-outline',
+	// 	children: [
+	// 		{
+	// 			title: 'Entrar',
+	// 			link: '/auth/login',
+	// 		},
+	// 		{
+	// 			title: 'Registrar',
+	// 			link: '/auth/register',
+	// 		},
+	// 		{
+	// 			title: 'Esqueci minha senha',
+	// 			link: '/auth/request-password',
+	// 		},
+	// 		{
+	// 			title: 'Nova Senha',
+	// 			link: '/auth/reset-password',
+	// 		},
+	// 	],
+	// },
 	// {
 	// 	title: 'Variados',
 	// 	icon: 'home-outline',
