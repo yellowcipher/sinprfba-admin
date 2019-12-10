@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserInfo, User } from '../../../models/user';
+import { AuthService } from '../../../services/auth.service';
+import { UserService } from '../../../services/user.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'ngx-new-user',
@@ -30,7 +34,13 @@ export class NewUserComponent implements OnInit {
 	public zipCodeMask = [ /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/ ];
 	public dateMask = [ /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/ ];
 	public cpfMask = [ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ];
-	constructor(private fb: FormBuilder) {}
+	constructor(
+		private fb: FormBuilder,
+		private auth: AuthService,
+		private userService: UserService,
+		private afs: AngularFirestore,
+		private router: Router,
+	) {}
 
 	userInfo: UserInfo = {
 		gender: '',
@@ -114,11 +124,27 @@ export class NewUserComponent implements OnInit {
 	}
 
 	registerUser() {
-		this.buildUser();
+		if (this.userForm.valid) {
+			this.auth
+				.register(this.userForm.get('email').value, this.userForm.get('password').value)
+				.then((result) => {
+					const uid = result.user.uid;
+					this.buildUser(uid);
+
+					this.userService.upload(this.fileToUpload, { folder: 'users/' + uid + '/' }).then((imageURL) => {
+						this.user.mainImage = imageURL;
+						this.afs.collection('users').doc(uid).set(this.user, { merge: true }).then((value) => {
+							this.router.navigate([ '/login' ]);
+						});
+					});
+				})
+				.catch((e) => {});
+		}
+		// this.buildUser(uid);
 		// console.log(this.user);
 	}
 
-	buildUser() {
+	buildUser(uid) {
 		this.user.firstName = this.userForm.get('firstName').value;
 		this.user.lastName = this.userForm.get('lastName').value;
 		this.user.email = this.userForm.get('email').value;
@@ -165,6 +191,6 @@ export class NewUserComponent implements OnInit {
 		this.userInfo.ctps = this.userForm.get('ctps').value;
 		this.userInfo.OAB = this.userForm.get('oab').value;
 		this.userInfo.professionalIdentity = this.userForm.get('professionalIdentity').value;
-		// this.user.uid = uid;
+		this.user.uid = uid;
 	}
 }

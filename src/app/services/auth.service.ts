@@ -33,8 +33,7 @@ export class AuthService {
 	}
 
 	async register(email: string, password: string) {
-		const credential = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-		this.updateUserData(credential.user);
+		return await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
 	}
 
 	signInWithEmail(email: string, password: string) {
