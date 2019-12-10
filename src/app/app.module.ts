@@ -30,10 +30,11 @@ import { environment } from '../environments/environment';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { NewUserComponent } from './users/new-user/new-user.component';
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
-	declarations: [ AppComponent ],
+	declarations: [ AppComponent, NewUserComponent ],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,

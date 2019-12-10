@@ -16,9 +16,12 @@ export class UsersComponent implements OnInit, OnDestroy {
 	settings = {
 		mode: 'external',
 		actions: {
-			add: false,
+			add: true,
 			edit: true,
 			delete: false,
+		},
+		add: {
+			addButtonContent: '<i class="nb-plus"></i>',
 		},
 		edit: {
 			editButtonContent: '<i class="nb-maximize"></i>',
@@ -63,5 +66,9 @@ export class UsersComponent implements OnInit, OnDestroy {
 
 	onEdit({ data, source }) {
 		this.router.navigate([ './', data['uid'] ], { relativeTo: this.route });
+	}
+
+	onCreate({ source }) {
+		this.router.navigate([ 'user/new' ], { relativeTo: this.route });
 	}
 }
