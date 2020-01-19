@@ -1,89 +1,246 @@
 <nb-card>
   <nb-card-header>Detalhes do usuário</nb-card-header>
-  <nb-card-body *ngIf="record$ | async as record">
+  
+  <!-- <form [formGroup]='userForm' novalidate> -->
+    <nb-card-body *ngIf="record$ | async as record">
     <div class="row">
-      <label class="label col-sm-3">Nome</label>
-      <p class="col-sm-9">{{record.firstName}}</p>
+      <label class="label col-md-3">Nome</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.firstName">
+      </div>
     </div>
+    <br>
     <div class="row">
-      <label class="label col-sm-3">Sobrenome</label>
-      <p class="col-sm-9">{{record.lastName}}</p>
+      <label class="label col-md-3">Sobrenome</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.lastName">
+      </div>
     </div>
+    <br>
     <div class="row">
-      <label class="label col-sm-3">E-mail</label>
-      <p class="col-sm-9">{{record.email}}</p>
+      <label class="label col-md-3">Status</label>
+      <div class="col-md-9">
+        <nb-select selected="1" [(ngModel)]="record.status">
+          <nb-option value="Filiado">Filiado</nb-option>
+          <nb-option value="Desfiliado">Desfiliado</nb-option>
+          <nb-option value="Falecido(a)">Falecido(a)</nb-option>
+        </nb-select>
+      </div>
     </div>
+    <br>
     <div class="row">
-      <label class="label col-sm-3">Telefone principal</label>
-      <p class="col-sm-9">{{record.mainPhone.type}}: {{record.mainPhone.number}}</p>
+      <label class="label col-md-3">E-mail</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.email">
+      </div>
     </div>
-    <div class="row" *ngIf='record.secondaryPhone.number'>
-      <label class="label col-sm-3">Telefone secundário</label>
-      <p class="col-sm-9">{{record.secondaryPhone.type}}: {{record.secondaryPhone.number}}</p>
-    </div>
+    <br>
     <div class="row">
-      <label class="label col-sm-3">CPF</label>
-      <p class="col-sm-9">{{record.cpf}}</p>
+      <label class="label col-md-3">Telefone principal</label>
+      <div class="col-md-2">
+        <nb-select selected="1" [(ngModel)]="record.mainPhone.type">
+          <nb-option value="residencial">Residencial</nb-option>
+          <nb-option value="celular">Celular</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-md-7">
+          <input type="text" class="form-control" [(ngModel)]="record.mainPhone.number">
+        </div>
     </div>
+    <br>
     <div class="row">
-      <label class="label col-sm-3">Endereço principal</label>
-      <p class="col-sm-9">{{record.mainAddress.street}}, {{record.mainAddress.number}} - {{record.mainAddress.complement}} | {{record.mainAddress.zipCode}}, {{record.mainAddress.district}}, {{record.mainAddress.city}} - {{record.mainAddress.state}}</p>
+      <label class="label col-md-3">Telefone secundário</label>
+      <div class="col-md-2">
+        <nb-select selected="1" [(ngModel)]="record.secondaryPhone.type">
+          <nb-option value="residencial">Residencial</nb-option>
+          <nb-option value="celular">Celular</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-md-7">
+          <input type="text" class="form-control" [(ngModel)]="record.secondaryPhone.number">
+        </div>
     </div>
-    <div class="row" *ngIf='record.secondaryAddress.zipCode'>
-      <label class="label col-sm-3">Endereço secundário</label>
-      <p class="col-sm-9">{{record.secondaryAddress.street}}, {{record.secondaryAddress.number}} - {{record.secondaryAddress.complement}} | {{record.secondaryAddress.zipCode}}, {{record.secondaryAddress.district}}, {{record.secondaryAddress.city}} - {{record.secondaryAddress.state}}</p>
-    </div>
+    <br>
     <div class="row">
-      <label class="label col-sm-3">Gênero</label>
-      <p class="col-sm-9">{{record.userInfo.gender}}</p>
+      <label class="label col-md-3">CPF</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.cpf">
+      </div>
     </div>
-    <div class="row" *ngIf='record.userInfo.maritalStatus'>
-      <label class="label col-sm-3">Estado civil</label>
-      <p class="col-sm-9">{{record.userInfo.maritalStatus}}</p>
-    </div>
-    <div class="row" *ngIf='record.userInfo.scholarity'>
-      <label class="label col-sm-3">Escolaridade</label>
-      <p class="col-sm-9">{{record.userInfo.scholarity}}</p>
-    </div>
-    <div class="row" *ngIf='record.userInfo.profession'>
-      <label class="label col-sm-3">Profissão</label>
-      <p class="col-sm-9">{{record.userInfo.profession}}</p>
-    </div>
-    <div class="row" *ngIf='record.userInfo.fatherName'>
-      <label class="label col-sm-3">Nome do pai</label>
-      <p class="col-sm-9">{{record.userInfo.fatherName}}</p>
-    </div>
-    <div class="row" *ngIf='record.userInfo.motherName'>
-      <label class="label col-sm-3">Nome da mãe</label>
-      <p class="col-sm-9">{{record.userInfo.motherName}}</p>
-    </div>
+    <br>
     <div class="row">
-      <label class="label col-sm-3">Data de Nascimento</label>
-      <p class="col-sm-9">{{record.userInfo.birthdate}}</p>
+      <label class="label col-md-3">Endereço principal</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.mainAddress.street" placeholder="Logradouro">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.mainAddress.number" placeholder="Número">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.mainAddress.complement" placeholder="Complemento">
+      </div>
     </div>
-    <div class="row" *ngIf='record.userInfo.placeOfBirth'>
-      <label class="label col-sm-3">Naturalidade</label>
-      <p class="col-sm-9">{{record.userInfo.placeOfBirth}}</p>
-    </div>
-    <div class="row" *ngIf='record.userInfo.nationality'>
-      <label class="label col-sm-3">Nacionalidade</label>
-      <p class="col-sm-9">{{record.userInfo.nationality}}</p>
-    </div>
+    <br>
     <div class="row">
-      <label class="label col-sm-3">Nº de identidade</label>
-      <p class="col-sm-9">{{record.userInfo.identityNumber}}, {{record.userInfo.identityInstitution}}</p>
+      <label class="label col-md-3"></label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.mainAddress.zipCode" placeholder="CEP">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.mainAddress.district" placeholder="Bairro">
+      </div>
+      <div class="col-md-2">
+        <input type="text" class="form-control" [(ngModel)]="record.mainAddress.city" placeholder=Cidade>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" [(ngModel)]="record.mainAddress.state" placeholder=Estado>
+      </div>
     </div>
-    <div class="row" *ngIf='record.userInfo.ctps'>
-      <label class="label col-sm-3">Carteira de Trabalho</label>
-      <p class="col-sm-9">{{record.userInfo.ctps}}</p>
+    <br>
+    <br>
+       <div class="row">
+      <label class="label col-md-3">Endereço secundário</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.secondaryAddress.street" placeholder="Logradouro">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.secondaryAddress.number" placeholder="Número">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.secondaryAddress.complement" placeholder="Complemento">
+      </div>
     </div>
-    <div class="row" *ngIf='record.userInfo.OAB'>
-      <label class="label col-sm-3">OAB</label>
-      <p class="col-sm-9">{{record.userInfo.OAB}}</p>
+    <br>
+    <div class="row">
+      <label class="label col-md-3"></label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.secondaryAddress.zipCode" placeholder="CEP">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.secondaryAddress.district" placeholder="Bairro">
+      </div>
+      <div class="col-md-2">
+        <input type="text" class="form-control" [(ngModel)]="record.secondaryAddress.city" placeholder=Cidade>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" [(ngModel)]="record.secondaryAddress.state" placeholder=Estado>
+      </div>
     </div>
-    <div class="row" *ngIf='record.userInfo.professionalIdentity'>
-      <label class="label col-sm-3">Identidade Profissional</label>
-      <p class="col-sm-9">{{record.userInfo.professionalIdentity}}</p>
+    <br>
+    <div class="row">
+      <label class="label col-md-3">Gênero</label>
+      <div class="col-md-9">
+        <nb-select selected="1" [(ngModel)]="record.userInfo.gender">
+          <nb-option value="Masculino">Masculino</nb-option>
+          <nb-option value="Feminino">Feminino</nb-option>
+          <nb-option value="Outro">Outro</nb-option>
+        </nb-select>
+      </div>
+    </div>
+        <br>
+    <div class="row">
+      <label class="label col-md-3">Estado civil</label>
+      <div class="col-md-9">
+        <nb-select selected="1" [(ngModel)]="record.userInfo.maritalStatus">
+          <nb-option value="Solteiro(a)">Solteiro(a)</nb-option>
+          <nb-option value="Casado(a)">Casado(a)</nb-option>
+          <nb-option value="Divorciado(a)">Divorciado(a)</nb-option>
+          <nb-option value="Viúvo(a)">Viúvo(a)</nb-option>
+          <nb-option value="Separado(a)">Separado(a)</nb-option>
+        </nb-select>
+      </div>
+    </div>
+  <br>
+        <div class="row">
+      <label class="label col-md-3">Escolaridade</label>
+      <div class="col-md-9">
+        <nb-select selected="1" [(ngModel)]="record.userInfo.scholarity ">
+          <nb-option value="Fundamental">Fundamental</nb-option>
+          <nb-option value="Médio incompleto">Médio incompleto</nb-option>
+          <nb-option value="Médio completo">Médio completo</nb-option>
+          <nb-option value="Superior inclompleto">Superior inclompleto</nb-option>
+          <nb-option value="Superior completo">Superior completo</nb-option>
+          <nb-option value="Pós-graduação">Pós-graduação</nb-option>
+          <nb-option value="Mestrado">Mestrado</nb-option>
+          <nb-option value="Doutorado">Doutorado</nb-option>
+        </nb-select>
+      </div>
+    </div>
+    <br>
+        <div class="row">
+      <label class="label col-md-3">Profissão</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.profession">
+      </div>
+    </div>
+    <br>
+        <div class="row">
+      <label class="label col-md-3">Nome do pai</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.fatherName">
+      </div>
+    </div>
+   
+   <br>
+        <div class="row">
+      <label class="label col-md-3">Nome da mãe</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.motherName">
+      </div>
+    </div>
+    <br>
+        <div class="row">
+      <label class="label col-md-3">Data de nascimento</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.birthdate">
+      </div>
+    </div>
+    <br>
+        <div class="row">
+      <label class="label col-md-3">Naturalidade</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.placeOfBirth">
+      </div>
+    </div>
+    <br>
+        <div class="row">
+      <label class="label col-md-3">Nacionalidade</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.nationality">
+      </div>
+    </div>
+    <br>
+        <div class="row" >
+      <label class="label col-md-3">Nº de identidade</label>
+      <div class="col-md-5">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.identityNumber" placeholder="número">
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.identityInstitution" placeholder="Orgão emissor">
+      </div>
+    </div>
+    <br>
+        <div class="row">
+      <label class="label col-md-3">Carteira de trabalho</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.ctps">
+      </div>
+    </div>
+    <br>
+        <div class="row">
+      <label class="label col-md-3">OAB</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.OAB">
+      </div>
+    </div>
+    <br>
+        <div class="row">
+      <label class="label col-md-3">Identidade profissional</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.professionalIdentity">
+      </div>
     </div>
   </nb-card-body>
+  <!-- </form> -->
+  
 </nb-card>

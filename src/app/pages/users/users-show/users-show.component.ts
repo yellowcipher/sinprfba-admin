@@ -4,6 +4,7 @@ import { map, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from '../../../models/user';
 import { UsersService } from '../../../services/users.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'ngx-users-show',
@@ -12,10 +13,14 @@ import { UsersService } from '../../../services/users.service';
 })
 export class UsersShowComponent implements OnInit {
 	record$: Observable<User>;
+	userForm;
 
 	constructor(private usersService: UsersService, private router: Router) {}
 
 	ngOnInit() {
+		this.userForm = new FormGroup({
+			firstName: new FormControl(),
+		});
 		const id = this.router.url.split('/').pop();
 		this.record$ = this.usersService.records.pipe(
 			filter((records) => records.length > 0),
