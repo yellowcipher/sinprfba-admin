@@ -17,12 +17,19 @@
       </div>
     </div>
     <br>
+     <div class="row">
+      <label class="label col-md-3">CPF</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" [(ngModel)]="record.cpf">
+      </div>
+    </div>
+    <br>
     <div class="row">
       <label class="label col-md-3">Status</label>
       <div class="col-md-9">
         <nb-select selected="1" [(ngModel)]="record.status">
-          <nb-option value="Filiado">Filiado</nb-option>
-          <nb-option value="Desfiliado">Desfiliado</nb-option>
+          <nb-option value="Filiado(a)">Filiado(a)</nb-option>
+          <nb-option value="Desfiliado(a)">Desfiliado(a)</nb-option>
           <nb-option value="Falecido(a)">Falecido(a)</nb-option>
         </nb-select>
       </div>
@@ -59,13 +66,6 @@
       <div class="col-md-7">
           <input type="text" class="form-control" [(ngModel)]="record.secondaryPhone.number">
         </div>
-    </div>
-    <br>
-    <div class="row">
-      <label class="label col-md-3">CPF</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" [(ngModel)]="record.cpf">
-      </div>
     </div>
     <br>
     <div class="row">
@@ -211,7 +211,7 @@
     </div>
     <br>
         <div class="row" >
-      <label class="label col-md-3">Nº de identidade</label>
+      <label class="label col-md-3">Identidade</label>
       <div class="col-md-5">
         <input type="text" class="form-control" [(ngModel)]="record.userInfo.identityNumber" placeholder="número">
       </div>
@@ -220,26 +220,112 @@
       </div>
     </div>
     <br>
-        <div class="row">
-      <label class="label col-md-3">Carteira de trabalho</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" [(ngModel)]="record.userInfo.ctps">
+    <div class="row" >
+      <label class="label col-md-3">Tipo de cadastro</label>
+      <div class="col-md-5">
+        <!-- <input type="text" class="form-control" [(ngModel)]="record.type" placeholder="Tipo"> -->
+        <nb-select selected="1" [(ngModel)]="record.type">
+          <nb-option value="Ativo">Ativo</nb-option>
+          <nb-option value="Inativo">Ativo</nb-option>
+          <nb-option value="Pensionista">Pensionista</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-md-4" *ngIf="record.type == 'Pensionista'">
+        <input type="text" class="form-control" [(ngModel)]="record.patron" placeholder="CPF do instituidor">
       </div>
     </div>
     <br>
-        <div class="row">
-      <label class="label col-md-3">OAB</label>
+    <div class="row">
+      <label class="label col-md-3">E-mail institucional</label>
       <div class="col-md-9">
-        <input type="text" class="form-control" [(ngModel)]="record.userInfo.OAB">
+        <input type="text" class="form-control" [(ngModel)]="record.institutionalEmail">
       </div>
     </div>
     <br>
-        <div class="row">
-      <label class="label col-md-3">Identidade profissional</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" [(ngModel)]="record.userInfo.professionalIdentity">
+    <div class="row">
+      <label class="label col-md-3">Tipo sanguíneo</label>
+      <div class="col-md-3">
+        <nb-select selected="1" [(ngModel)]="record.userInfo.bloodType">
+          <nb-option value="A">A</nb-option>
+          <nb-option value="B">B</nb-option>
+          <nb-option value="AB">AB</nb-option>
+          <nb-option value="O">O</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-md-3">
+        <nb-select selected="1" [(ngModel)]="record.userInfo.bloodRH">
+          <nb-option value="positivo">Positivo</nb-option>
+          <nb-option value="negativo">Negativo</nb-option>
+        </nb-select>
       </div>
     </div>
+    <br>
+    <div class="row">
+      <label class="label col-md-3">Data de admissão</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.admissionDate" placeholder="Data de admissão">
+      </div>
+    </div>
+    <br>
+     <div class="row">
+      <label class="label col-md-3">Delegacia de Lotação</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" [(ngModel)]="record.userInfo.stockingstation" placeholder="Delegacia de lotação">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <label class="label col-md-3">Tem dependente</label>
+      <div class="col-md-3">
+        <nb-select selected="1" [(ngModel)]="record.userInfo.hasDependants">
+          <nb-option value="yes">Sim</nb-option>
+          <nb-option value="no">Não</nb-option>
+        </nb-select>
+      </div>
+    </div>
+    <br>
+    <div *ngIf="record.userInfo.hasDependants == 'yes'">
+      <div class="row">
+        <label class="label col-md-3">Dependente</label>
+        <div class="col-md-3">
+          <input type="text" class="form-control" [(ngModel)]="record.userInfo.dependant.type" placeholder="Tipo">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" [(ngModel)]="record.userInfo.dependant.name" placeholder="Nome">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" [(ngModel)]="record.userInfo.dependant.cpf" placeholder="CPF">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <label class="label col-md-3"></label>
+        <div class="col-md-3">
+          <input type="text" class="form-control" [(ngModel)]="record.userInfo.dependant.birthdate" placeholder="Data de Nascimento">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" [(ngModel)]="record.userInfo.dependant.phone" placeholder="Telefone">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" [(ngModel)]="record.userInfo.dependant.email" placeholder=E-mail>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+        <label class="label col-md-3">Plano de saúde</label>
+        <div class="col-md-3">
+          <input type="text" class="form-control" [(ngModel)]="record.userInfo.healthInsurance.HIOperator" placeholder="Operadora/Corretora vinculada">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" [(ngModel)]="record.userInfo.healthInsurance.HIName" placeholder="Nome do plano">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" [(ngModel)]="record.userInfo.healthInsurance.HINumber" placeholder="Número da carteirinha">
+        </div>
+      </div>
+        
+      
   </nb-card-body>
   <!-- </form> -->
   
